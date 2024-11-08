@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app1
+  namespace: expense
   labels: # these are replicaset labels
     name: app1
     tier: frontend

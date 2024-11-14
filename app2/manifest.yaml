@@ -1,9 +1,7 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app2
-  namespace: expense
   labels: # these are replicaset labels
     name: app2
     tier: frontend
@@ -46,14 +44,15 @@ kind: Ingress
 metadata:
     name: app2
     annotations:
-      kubernetes.io/ingress.class: alb
+      #kubernetes.io/ingress.class: alb
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:169810528182:certificate/464a1337-81ea-4e39-855c-3dc7df460bd6
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:169810528182:certificate/f990b261-8a8d-4b8c-90c5-df772948552e
       alb.ingress.kubernetes.io/listen-ports: '[ {"HTTPS": 443}]'
       alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
       alb.ingress.kubernetes.io/group.name: expense
 spec:
+    ingressClassName: alb
     rules:
     - host: "app2.daws81s.fun"
       http:
